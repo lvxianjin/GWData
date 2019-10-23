@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iscas.data.dao.NodeInfoDao">
+    <select id="getNodeInfo" resultType="java.util.Map" parameterType="java.lang.String">
+        SELECT node,amplitude,type,location FROM node_voltage_transient,location_info WHERE time = #{time} AND node_id = node
+    </select>
+    <select id="getRouteInfo" resultType="java.util.Map" parameterType="java.lang.String">
+        SELECT `from`,`to`,head_active,end_active FROM line_info_transient WHERE time = #{time}
+    </select>
+    <select id="getLocationById" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT location FROM location_info WHERE node_id = #{node_id}
+    </select>
+    <select id="getNameById" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT `name` FROM location_info WHERE node_id = #{node_id}
+    </select>
+</mapper>
