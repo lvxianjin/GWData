@@ -30,7 +30,6 @@ public class LocationController {
     @RequestMapping("getJC.json")
     public Map<String,List> getJCInfo(){
         Map<String,List> data_map = new HashMap<>();
-
         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
         List<String> data1_list = new ArrayList<>();
         List<Map<String,String>> data2_list = new ArrayList<>();
