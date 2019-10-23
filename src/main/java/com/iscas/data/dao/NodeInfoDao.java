@@ -52,4 +52,14 @@ public interface NodeInfoDao {
      * @date: 2019/10/23 16:23
      */
     String getNameById(String node_id);
+    /**
+     *
+     * 功能描述: 通过名称查询年龄
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/23 19:55
+     */
+    int getAgeByName(String name_name);
 }
