@@ -21,16 +21,6 @@ public interface JCInfoService {
     List<String> getErrorInfo();
     /**
      *
-     * 功能描述: 获取发电机调参信息表
-     *
-     * @param:
-     * @return:
-     * @auther: lvxianjin
-     * @date: 2019/10/23 15:58
-     */
-    List<Map<String,String>> getPolicyInfo();
-    /**
-     *
      * 功能描述: 获取五大指标
      *
      * @param:
@@ -39,4 +29,14 @@ public interface JCInfoService {
      * @date: 2019/10/23 17:08
      */
     Map<String,String> getIndex();
+    /**
+     *
+     * 功能描述: 获取频率和阻尼比信息
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/24 11:05
+     */
+    List<Map<String,String>> getHZInfo();
 }
