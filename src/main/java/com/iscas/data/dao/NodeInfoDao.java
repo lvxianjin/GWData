@@ -44,6 +44,15 @@ public interface NodeInfoDao {
     String getLocationById(String node_id);
     /**
      *
+     * 功能描述: 根据id获取名称
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/24 19:54
+     */
+    /**
+     *
      * 功能描述: 根据node_id获取节点名称
      *
      * @param:
@@ -51,5 +60,15 @@ public interface NodeInfoDao {
      * @auther: lvxianjin
      * @date: 2019/10/23 16:23
      */
-    String getNameById(String node_id);
+    String getNameById(String node_id); //1
+    /**
+     *
+     * 功能描述: 通过场站名称获取基础信息
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/24 15:28
+     */
+    Map<String,String> getDataByName(String name, String time);
 }

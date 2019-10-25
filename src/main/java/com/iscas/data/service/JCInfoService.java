@@ -39,4 +39,34 @@ public interface JCInfoService {
      * @date: 2019/10/24 11:05
      */
     List<Map<String,String>> getHZInfo();
+    /**
+     *
+     * 功能描述: 根据站点名称获取指标信息
+     *
+     * @param station_name 站点名称
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/24 20:39
+     */
+    Map<String,String> getDataByName(String station_name);
+    /**
+     *
+     * 功能描述: 根据Id获取指标信息
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/24 20:54
+     */
+    Map<String,String> getDataById(String id);
+     /**
+      *
+      * 功能描述: 获取模式模态信息
+      *
+      * @param:
+      * @return:
+      * @auther: lvxianjin
+      * @date: 2019/10/25 13:57
+      */
+     Map<String, List> getSysMode(String filePath,int count);
 }

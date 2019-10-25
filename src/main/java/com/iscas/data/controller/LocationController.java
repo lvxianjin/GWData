@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -20,10 +19,26 @@ import java.util.*;
 @RestController
 @CrossOrigin("*")
 public class LocationController {
+    private int count = 0;
     @Autowired
     private NodeInfoService nodeInfoService;
+    @Autowired
+    private JCInfoService jcInfoService;
     @RequestMapping("/getBorder.json")
     public List<List> getBorder(){
         return nodeInfoService.getBorder();
+    }
+    @RequestMapping("getData.json")
+    public Map<String,String> getDataById(@RequestParam String id){
+        return jcInfoService.getDataById(id);
+    }
+    @RequestMapping(value = "getSystemMode")
+    public Map<String,List> getSystemMode(){
+        Map<String,List> info= jcInfoService.getSysMode("/jar/SystemMode.csv",count);
+        count = count+2;
+        if(count == 10){
+            count = 0;
+        }
+        return info;
     }
 }

@@ -2,6 +2,7 @@ package com.iscas.data.cron;
 
 import com.iscas.data.service.NodeInfoService;
 import com.iscas.data.socket.NodeSocket;
+import com.iscas.data.tool.RedisClient;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.Trigger;
@@ -37,6 +38,7 @@ public class NodeSchedule implements SchedulingConfigurer {
         taskRegistrar.addTriggerTask(new Runnable() {
             @Override
             public void run() {
+                RedisClient client = new RedisClient();
                 setCron("0/2 * * * * ?");
                 Map<String,List> data_map = new HashMap<>();
                 Map<String,String> error_map = new HashMap<>();
@@ -48,6 +50,7 @@ public class NodeSchedule implements SchedulingConfigurer {
                     error_map.put("Tlat", "30.668634");
                     error_map.put("percent","0.1");
                 }
+                client.setValue("time",String.valueOf(time));
                 List<Map<String,String>> data1 = nodeInfoService.getNodeInfo(String.valueOf(time));
                 List<Map<String,String>> data2 = new ArrayList<>();
                 List<Map<String,String>> data3 = nodeInfoService.getRouteInfo(String.valueOf(time));
