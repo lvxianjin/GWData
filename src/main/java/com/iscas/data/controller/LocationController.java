@@ -41,4 +41,8 @@ public class LocationController {
         }
         return info;
     }
+    @RequestMapping(value = "getLineByLevel")
+    public List<Map<String,String>> getLineByLevel(@RequestParam String level){
+        return nodeInfoService.getLineByLevel(level);
+    }
 }

@@ -36,4 +36,14 @@ public interface NodeInfoService {
      * @date: 2019/10/23 12:47
      */
     List<List> getBorder();
+    /**
+     *
+     * 功能描述: 根据电压等级获取线路信息
+     *
+     * @param level 电压等级
+     * @return: 线路信息
+     * @auther: lvxianjin
+     * @date: 2019/10/26 10:39
+     */
+    List<Map<String,String>> getLineByLevel(String level);
 }

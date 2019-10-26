@@ -3,7 +3,6 @@ package com.iscas.data.service.impl;
 import com.iscas.data.dao.NodeInfoDao;
 import com.iscas.data.service.JCInfoService;
 import com.iscas.data.service.NodeInfoService;
-import com.iscas.data.service.VoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.*;
@@ -17,8 +16,6 @@ import java.util.*;
 public class NodeInfoServiceImpl implements NodeInfoService {
     @Autowired
     private NodeInfoDao nodeInfoDao;
-    @Autowired
-    private JCInfoService jcInfoService;
     /**
      * 功能描述: 通过时间获取节点信息
      * @param: time 时间
@@ -68,6 +65,23 @@ public class NodeInfoServiceImpl implements NodeInfoService {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return info;
+    }
+
+    @Override
+    public List<Map<String, String>> getLineByLevel(String level) {
+        List<Map<String,String>> info = new ArrayList<>();
+        List<Map<String,String>> list = nodeInfoDao.getLineByLevel(level);
+        for (int i = 0; i <list.size() ; i++) {
+            Map<String,String> map = new HashMap<>();
+            String from_location = nodeInfoDao.getLocationById(list.get(i).get("from"));
+            String to_location = nodeInfoDao.getLocationById(list.get(i).get("to"));
+            map.put("Flng",from_location.split(",")[0]);
+            map.put("Flat",from_location.split(",")[1]);
+            map.put("Tlng",to_location.split(",")[0]);
+            map.put("Tlat",to_location.split(",")[1]);
+            info.add(map);
         }
         return info;
     }

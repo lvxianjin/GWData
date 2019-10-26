@@ -14,4 +14,7 @@
     <select id="getNameById" parameterType="java.lang.String" resultType="java.lang.String">
         SELECT `name` FROM location_info WHERE node_id = #{node_id}
     </select>
+    <select id="getLineByLevel" resultType="java.util.Map" parameterType="java.lang.String">
+        SELECT `from`,`to` FROM line_info_transient WHERE `level` = #{level} AND time = 0
+    </select>
 </mapper>

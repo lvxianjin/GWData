@@ -60,5 +60,15 @@ public interface NodeInfoDao {
      * @auther: lvxianjin
      * @date: 2019/10/23 16:23
      */
-    String getNameById(String node_id); //1
+    String getNameById(String node_id);
+    /**
+     *
+     * 功能描述: 根据电压等级获取连线
+     *
+     * @param level 电压等级
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/26 12:13
+     */
+    List<Map<String,String>> getLineByLevel(String level);
 }
