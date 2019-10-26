@@ -1,9 +1,7 @@
 package com.iscas.data.controller;
 
-import com.iscas.data.dao.NodeInfoDao;
 import com.iscas.data.service.JCInfoService;
 import com.iscas.data.tool.RedisClient;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
