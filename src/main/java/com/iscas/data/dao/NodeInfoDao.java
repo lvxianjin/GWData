@@ -61,14 +61,4 @@ public interface NodeInfoDao {
      * @date: 2019/10/23 16:23
      */
     String getNameById(String node_id); //1
-    /**
-     *
-     * 功能描述: 通过场站名称获取基础信息
-     *
-     * @param:
-     * @return:
-     * @auther: lvxianjin
-     * @date: 2019/10/24 15:28
-     */
-    Map<String,String> getDataByName(String name, String time);
 }
