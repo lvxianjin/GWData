@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.*;
 
 /**
@@ -24,7 +23,7 @@ public class LocationController {
     private NodeInfoService nodeInfoService;
     @Autowired
     private JCInfoService jcInfoService;
-    @RequestMapping("/getBorder.json")
+    @RequestMapping("getBorder.json")
     public List<List> getBorder(){
         return nodeInfoService.getBorder();
     }
@@ -43,6 +42,10 @@ public class LocationController {
     }
     @RequestMapping(value = "getLineByLevel")
     public List<Map<String,String>> getLineByLevel(@RequestParam String level){
-        return nodeInfoService.getLineByLevel(level);
+        return nodeInfoService.getLineByLevel(level+"kv");
+    }
+    @RequestMapping(value = "getNodeInfo.json")
+    public Map<String,List> getNodeInfo(){
+        return nodeInfoService.getNodeInfo();
     }
 }

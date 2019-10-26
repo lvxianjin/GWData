@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iscas.data.dao.NodeInfoDao">
     <select id="getNodeInfo" resultType="java.util.Map" parameterType="java.lang.String">
-        SELECT node,amplitude,type,location FROM node_voltage_transient,location_info WHERE time = #{time} AND node_id = node
+        SELECT node,amplitude,level,type,location FROM node_voltage_transient,location_info WHERE time = #{time} AND node_id = node
     </select>
     <select id="getRouteInfo" resultType="java.util.Map" parameterType="java.lang.String">
         SELECT `from`,`to`,head_active,end_active FROM line_info_transient WHERE time = #{time}
@@ -16,5 +16,8 @@
     </select>
     <select id="getLineByLevel" resultType="java.util.Map" parameterType="java.lang.String">
         SELECT `from`,`to` FROM line_info_transient WHERE `level` = #{level} AND time = 0
+    </select>
+    <select id="getErrorLine" resultType="java.util.Map">
+        SELECT `from`,`to` FROM line_info_transient WHERE time =0 AND ( `from` in(5,8) OR `to` in (5,8))
     </select>
 </mapper>

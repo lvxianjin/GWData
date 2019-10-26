@@ -71,4 +71,5 @@ public interface NodeInfoDao {
      * @date: 2019/10/26 12:13
      */
     List<Map<String,String>> getLineByLevel(String level);
+    List<Map<String,String>> getErrorLine();
 }

@@ -32,7 +32,7 @@ public class NodeSchedule implements SchedulingConfigurer {
     private NodeSocket nodeSocket;
     private static final String DEFAULT_CRON = "0/2 * * * * ?";
     private String cron = DEFAULT_CRON;
-    private double time = 0.9;
+    private double time = 1.01;
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.addTriggerTask(new Runnable() {
@@ -42,13 +42,18 @@ public class NodeSchedule implements SchedulingConfigurer {
                 setCron("0/2 * * * * ?");
                 Map<String,List> data_map = new HashMap<>();
                 Map<String,String> error_map = new HashMap<>();
+                Map<String,String> error_line = new HashMap<>();
+                List<Map<String,String>> data4 = new ArrayList<>();
                 if(time>=1.01&&time<=1.22){
                     setCron("0/1 * * * * ?");
-                    error_map.put("Flng", "116.05439");
-                    error_map.put("Flat", "43.939423");
-                    error_map.put("Tlng", "104.08163");
-                    error_map.put("Tlat", "30.668634");
+                    error_map.put("Flng", "108.143882");
+                    error_map.put("Flat", "38.804522");
+                    error_map.put("Tlng", "88.339192,");
+                    error_map.put("Tlat", "34.216009");
                     error_map.put("percent","0.1");
+                    nodeInfoService.getErrorLine();
+                }else {
+                    data4.add(error_line);
                 }
                 client.setValue("time",String.valueOf(time));
                 List<Map<String,String>> data1 = nodeInfoService.getNodeInfo(String.valueOf(time));
@@ -58,11 +63,12 @@ public class NodeSchedule implements SchedulingConfigurer {
                 data_map.put("data1",data1);
                 data_map.put("data2",data2);
                 data_map.put("data3",data3);
+                data_map.put("data4",data4);
                 JSONObject data = JSONObject.fromObject(data_map);
                 nodeSocket.sendMessage(data.toString());
                 time = add(time,0.01);
-                if(time == 1.4){
-                    time = 0.9;
+                if(time == 1.22){
+                    time = 1.01;
                 }
             }
         }, new Trigger() {

@@ -46,4 +46,24 @@ public interface NodeInfoService {
      * @date: 2019/10/26 10:39
      */
     List<Map<String,String>> getLineByLevel(String level);
+    /**
+     *
+     * 功能描述: 获取辐射范围
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/26 17:33
+     */
+    List<Map<String,String>> getErrorLine();
+    /**
+     *
+     * 功能描述:
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/26 18:57
+     */
+    Map<String,List> getNodeInfo();
 }

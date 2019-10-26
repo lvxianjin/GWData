@@ -1,7 +1,6 @@
 package com.iscas.data.service.impl;
 
 import com.iscas.data.dao.NodeInfoDao;
-import com.iscas.data.service.JCInfoService;
 import com.iscas.data.service.NodeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +83,33 @@ public class NodeInfoServiceImpl implements NodeInfoService {
             info.add(map);
         }
         return info;
+    }
+
+    @Override
+    public List<Map<String, String>> getErrorLine() {
+        List<Map<String,String>> info = new ArrayList<>();
+        List<Map<String,String>> errorLine = nodeInfoDao.getErrorLine();
+        for (int i = 0; i <errorLine.size() ; i++) {
+            Map<String,String> map = errorLine.get(i);
+            String from = nodeInfoDao.getLocationById(map.get("from"));
+            String to = nodeInfoDao.getLocationById(map.get("to"));
+            map.put("Flng",from.split(",")[0]);
+            map.put("Flat",from.split(",")[1]);
+            map.put("Tlng",to.split(",")[0]);
+            map.put("Tlat",to.split(",")[1]);
+            info.add(map);
+        }
+        return info;
+    }
+
+    @Override
+    public Map<String, List> getNodeInfo() {
+        Map<String,List> data = new HashMap<>();
+        List<Map<String,String>> data1 = getNodeInfo("0");
+        List<Map<String,String>> data2 = getRouteInfo("0");
+        data.put("data1",data1);
+        data.put("data2",data2);
+        return data;
     }
 
     @Override

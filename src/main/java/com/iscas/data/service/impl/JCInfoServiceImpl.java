@@ -68,37 +68,6 @@ public class JCInfoServiceImpl implements JCInfoService {
     }
 
     @Override
-    public List<Map<String, String>> getHZInfo() {
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-        List<Map<String, String>> info = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            Map<String, String> map = new HashMap<>();
-            double hz = ((int) (Math.random() * (60 - 40) + 40)) * 0.01;;
-            NumberFormat Nformat = NumberFormat.getInstance();
-            // 设置小数位数。
-            Nformat.setMaximumFractionDigits(2);
-            map.put("hz",Nformat.format(hz));
-            if (i == 0) {
-                map.put("name", "华北");
-            } else if (i == 1) {
-                map.put("name", "华东");
-            } else if (i == 2) {
-                map.put("name", "华中");
-            } else if (i == 3) {
-                map.put("name", "东北");
-            } else if (i == 4) {
-                map.put("name", "西北");
-            } else if (i == 5) {
-                map.put("name", "西南");
-            }
-            map.put("percent", String.valueOf((int) (Math.random() * (60 - 20) + 20)) + "%");
-            map.put("time", df.format(new Date()));
-            info.add(map);
-        }
-        return info;
-    }
-
-    @Override
     public Map<String, String> getDataByName(String station_name) {
         Map<String, String> map = new HashMap<>();
         String Secure_Rate = "0.00" + String.valueOf((int) (Math.random() * (6 - 2) + 2));
