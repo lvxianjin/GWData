@@ -2,6 +2,7 @@ package com.iscas.data.service.impl;
 
 import com.iscas.data.dao.NodeInfoDao;
 import com.iscas.data.service.NodeInfoService;
+import com.iscas.data.tool.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.*;
@@ -135,5 +136,29 @@ public class NodeInfoServiceImpl implements NodeInfoService {
             route_info.add(map);
         }
         return route_info;
+    }
+
+    @Override
+    public Map<String, String> getBasicInfo(String id) {
+        Map<String,String> map =nodeInfoDao.getBasicInfo(id);
+        map.put("v",map.get("v")+"kv");
+        map.put("p",map.get("p")+"MW");
+        map.put("q",map.get("q")+"MVar");
+        return map;
+    }
+
+    @Override
+    public List<Map<String, String>> getClusterById(String id) {
+        RedisClient client = new RedisClient();
+        String time = client.getValue("time");
+        List<Map<String, String>> info = new ArrayList<>();
+        List<Map<String, String>> list = nodeInfoDao.getCluster(id,time);
+        for (int i = 0; i <list.size() ; i++) {
+            Map<String,String> map = list.get(i);
+            map.put("lng",map.get("location").split(",")[0]);
+            map.put("lat",map.get("location").split(",")[1]);
+            info.add(map);
+        }
+        return info;
     }
 }

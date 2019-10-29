@@ -15,6 +15,7 @@ import java.util.Map;
  */
 @Service
 public class ModelServiceImpl implements ModelService {
+    private List<Map<String,String>> model_data = new ArrayList<>();
     @Override
     public Message getInfoByType(String type,int page,int limit) {
         List<Map<String,String>> info = new ArrayList<>();
@@ -57,9 +58,34 @@ public class ModelServiceImpl implements ModelService {
                 map.put("Q","-"+Nformat.format(5.86096+q));
             }
             info.add(map);
+            model_data.add(map);
         }
         int start = (page-1)*limit;
         Message msg = new Message(0,"",1000,info.subList(start,start+limit-1));
         return msg;
+    }
+
+    @Override
+    public List<Map<String,String>> getInfoByName(String name) {
+        List<Map<String,String>> info = new ArrayList<>();
+        NumberFormat Nformat = NumberFormat.getInstance();
+        // 设置小数位数。
+        Nformat.setMaximumFractionDigits(2);
+        for (int i = 0; i <model_data.size() ; i++) {
+            Map<String,String> map = new HashMap<>();
+            int u = (int) (Math.random() * (20000 - 500) + 500);
+            double p = (int) (Math.random() * (800 - 200) + 200)*0.1;
+            double q = (int) (Math.random() * (200 - 10) + 10)*0.01;
+            if(name.equals(model_data.get(i).get("name"))){
+                map.put("BU",String.valueOf(Double.parseDouble(model_data.get(i).get("U"))-u));
+                map.put("BP",Nformat.format(Double.parseDouble(model_data.get(i).get("P"))-p));
+                map.put("BQ",Nformat.format(Double.parseDouble(model_data.get(i).get("Q"))-q));
+                map.put("AU",model_data.get(i).get("U"));
+                map.put("AP",model_data.get(i).get("P"));
+                map.put("AQ",model_data.get(i).get("Q"));
+                info.add(map);
+            }
+        }
+        return info;
     }
 }

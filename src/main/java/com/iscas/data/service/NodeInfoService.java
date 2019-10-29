@@ -66,4 +66,24 @@ public interface NodeInfoService {
      * @date: 2019/10/26 18:57
      */
     Map<String,List> getNodeInfo();
+    /**
+     *
+     * 功能描述: 获取基础信息
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/28 9:33
+     */
+    Map<String,String> getBasicInfo(String id);
+    /**
+     *
+     * 功能描述: 根据id获取聚类信息
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/28 9:49
+     */
+    List<Map<String,String>> getClusterById(String id);
 }

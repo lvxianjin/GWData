@@ -1,7 +1,7 @@
 package com.iscas.data.socket;
 
+import com.iscas.data.tool.RedisClient;
 import org.springframework.stereotype.Controller;
-
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
@@ -51,9 +51,8 @@ public class NodeSocket {
      */
     @OnMessage
     public void onMessage(String message) {
-        for (NodeSocket item : webSocketSet) {
-            item.sendMessage(message);
-        }
+        RedisClient client = new RedisClient();
+        client.setValue("id",message);
     }
 
     /**

@@ -1,7 +1,9 @@
 package com.iscas.data.controller;
 
+import com.iscas.data.dao.NodeInfoDao;
 import com.iscas.data.service.JCInfoService;
 import com.iscas.data.service.NodeInfoService;
+import com.sun.javafx.collections.MappingChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +49,17 @@ public class LocationController {
     @RequestMapping(value = "getNodeInfo.json")
     public Map<String,List> getNodeInfo(){
         return nodeInfoService.getNodeInfo();
+    }
+    @RequestMapping(value = "getJCInfo.json")
+    public Map<String,String> getJCInfo(@RequestParam String id){
+        return jcInfoService.getInfoById(id);
+    }
+    @RequestMapping(value = "getBasicInfo.json")
+    public Map<String,String> getBasicInfo(@RequestParam String id){
+        return nodeInfoService.getBasicInfo(id);
+    }
+    @RequestMapping(value = "getCluster.json")
+    public List<Map<String,String>> getClusterByid(@RequestParam String id){
+        return nodeInfoService.getClusterById(id);
     }
 }

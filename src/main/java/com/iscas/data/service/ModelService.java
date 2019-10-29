@@ -21,4 +21,14 @@ public interface ModelService {
      * @date: 2019/10/26 13:33
      */
    Message getInfoByType(String type,int page,int limit);
+   /**
+    *
+    * 功能描述: 根据名称获取信息
+    *
+    * @param:
+    * @return:
+    * @auther: lvxianjin
+    * @date: 2019/10/27 11:15
+    */
+    List<Map<String,String>> getInfoByName(String name);
 }

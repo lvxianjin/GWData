@@ -72,4 +72,7 @@ public interface NodeInfoDao {
      */
     List<Map<String,String>> getLineByLevel(String level);
     List<Map<String,String>> getErrorLine();
+    List<Map<String,String>> getCluster(String node,String time);
+    Map<String,String> getBasicInfo(String node_id);
+    String getIdByName(String name);
 }

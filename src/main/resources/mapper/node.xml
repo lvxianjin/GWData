@@ -18,6 +18,15 @@
         SELECT `from`,`to` FROM line_info_transient WHERE `level` = #{level} AND time = 0
     </select>
     <select id="getErrorLine" resultType="java.util.Map">
-        SELECT `from`,`to` FROM line_info_transient WHERE time =0 AND ( `from` in(5,8) OR `to` in (5,8))
+        SELECT `from`,`to` FROM line_info_transient WHERE time =0 AND ( `from` in(22,35) OR `to` in (22,35))
+    </select>
+    <select id="getCluster" resultType="java.util.Map">
+        SELECT node,type,location FROM node_voltage_transient,location_info WHERE type = (SELECT type FROM node_voltage_transient WHERE node = #{node} AND time = #{time}) AND time =#{time} AND node = node_id
+    </select>
+    <select id="getBasicInfo" resultType="java.util.Map">
+        SELECT p,v,q FROM location_info WHERE node_id = #{node_id}
+    </select>
+    <select id="getIdByName" resultType="java.lang.String">
+        SELECT node_id FROM location_info WHERE `name` = #{name}
     </select>
 </mapper>

@@ -10,10 +10,21 @@ import java.util.Map;
 public interface VoiceService {
     /**
      *
-     * 功能描述: 播报五大指标
-     *
-     * @param flag 五个指标
-     * @date  2019/10/24 9:06
+     * 功能描述: 语音获取实时信息
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/27 21:39
      */
-    void getIndexInfo(int flag);
+    String queryCommand(String commandType,String area);
+    /**
+     *
+     * 功能描述: 语音操作大屏
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/10/28 8:39
+     */
+    String operate(String commandType,String parameter);
 }

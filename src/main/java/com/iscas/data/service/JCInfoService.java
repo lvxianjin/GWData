@@ -11,7 +11,7 @@ import java.util.Map;
 public interface JCInfoService {
    /**
     *
-    * 功能描述: 获取报警信息
+    * 功能描述: 获取薄弱节点名称
     *
     * @param:
     * @return:
@@ -59,4 +59,94 @@ public interface JCInfoService {
       * @date: 2019/10/25 13:57
       */
      Map<String, List> getSysMode(String filePath,int count);
+     /**
+      *
+      * 功能描述: 获取决策信息
+      *
+      * @param:
+      * @return:
+      * @auther: lvxianjin
+      * @date: 2019/10/27 19:20
+      */
+     Map<String,List> getJCInfo();
+     /**
+      *
+      * 功能描述: 根据id获取薄弱节点的裕度
+      *
+      * @param:
+      * @return:
+      * @auther: lvxianjin
+      * @date: 2019/10/27 21:45
+      */
+     Map<String,String> getInfoById(String id);
+     /**
+      *
+      * 功能描述: 根据flag获取薄弱节点的裕度
+      *
+      * @param:
+      * @return:
+      * @auther: lvxianjin
+      * @date: 2019/10/27 21:46
+      */
+     String getIndexByFlag(String flag);
+     /**
+      *
+      * 功能描述:获取六大地区的信息
+      *
+      * @param:
+      * @return:
+      * @auther: lvxianjin
+      * @date: 2019/10/28 8:01
+      */
+ List<Map<String, String>> getAreaInfo();
+ /**
+  *
+  * 功能描述: 根据地区名称获取振荡频率信息
+  *
+  * @param:
+  * @return:
+  * @auther: lvxianjin
+  * @date: 2019/10/28 8:07
+  */
+ String getHZByArea(String area);
+ /**
+  *
+  * 功能描述: 根据地区名称获取阻尼比
+  *
+  * @param:
+  * @return:
+  * @auther: lvxianjin
+  * @date: 2019/10/28 8:09
+  */
+ String getZNByArea(String area);
+ /**
+  *
+  * 功能描述: 获取策略表信息
+  *
+  * @param:
+  * @return:
+  * @auther: lvxianjin
+  * @date: 2019/10/28 8:21
+  */
+ String getPoliceInfo();
+ /**
+  *
+  * 功能描述: 获取安全概率
+  *
+  * @param:
+  * @return:
+  * @auther: lvxianjin
+  * @date: 2019/10/28 14:11
+  */
+Map<String,String> getSecure();
+/**
+ *
+ * 功能描述: 获取关键节点指标信息
+ *
+ * @param:
+ * @return:
+ * @auther: lvxianjin
+ * @date: 2019/10/28 20:06
+ */
+List<Map<String,String>> getImIndex();
 }
