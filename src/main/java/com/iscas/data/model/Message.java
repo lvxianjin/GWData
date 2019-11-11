@@ -9,40 +9,24 @@ import java.util.Map;
  * @Description:
  */
 public class Message {
-    private int code;
-    private String msg;
-    private int count;
+    private int total;
     private List<Map<String,String>> data;
+    private int limit;
+    private int page;
 
-    public Message(int code, String msg, int count, List<Map<String, String>> data) {
-        this.code = code;
-        this.msg = msg;
-        this.count = count;
+    public Message(int total, List<Map<String, String>> data, int limit, int page) {
+        this.total = total;
         this.data = data;
+        this.limit = limit;
+        this.page = page;
     }
 
-    public int getCode() {
-        return code;
+    public int getTotal() {
+        return total;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public List<Map<String, String>> getData() {
@@ -51,5 +35,21 @@ public class Message {
 
     public void setData(List<Map<String, String>> data) {
         this.data = data;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 }

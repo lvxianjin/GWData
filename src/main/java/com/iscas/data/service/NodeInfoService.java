@@ -86,4 +86,14 @@ public interface NodeInfoService {
      * @date: 2019/10/28 9:49
      */
     List<Map<String,String>> getClusterById(String id);
+    /**
+     *
+     * 功能描述: 全国热力图
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/11/11 16:28
+     */
+    public List<Map<String,String>> getRate();
 }

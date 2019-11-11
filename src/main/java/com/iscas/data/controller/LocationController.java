@@ -62,4 +62,8 @@ public class LocationController {
     public List<Map<String,String>> getClusterByid(@RequestParam String id){
         return nodeInfoService.getClusterById(id);
     }
+    @RequestMapping(value = "getRate.json")
+    public List<Map<String,String>> getRate(){
+        return nodeInfoService.getRate();
+    }
 }

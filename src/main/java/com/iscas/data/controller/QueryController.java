@@ -1,9 +1,8 @@
 package com.iscas.data.controller;
-
+import com.iscas.data.model.LayModel;
 import com.iscas.data.model.Message;
 import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -57,8 +56,31 @@ public class QueryController {
             data.add(map);
         }
         int start = (page-1)*limit;
-        Message message = new Message(0,"",1000,data.subList(start,start+limit-1));
+        Message message = new Message(1000,data.subList(start,start+limit-1),limit,page);
         System.out.println(data.size());
         return JSONObject.fromObject(message).toString();
+    }
+    @RequestMapping(value = "/queryIndex", method = RequestMethod.GET)
+    public LayModel queryIndex(@RequestParam String area,
+                                               @RequestParam String start_date,
+                                               @RequestParam String end_date){
+        List<Map<String,String>> data = new ArrayList<>();
+        String station = "葛洲坝换流站、中州换流站、江陵换流站、南阳、团林换流站、国网灵宝换流站、湖北施州换流站";
+        String stations[] = station.split("、");
+        for (int i = 0; i <stations.length ; i++) {
+            Map<String,String> map = new HashMap<>();
+            map.put("start_time",start_date);
+            map.put("end_time",end_date);
+            map.put("station_name",stations[i]);
+            String times = String.valueOf((int) (Math.random() * (40 - 10) + 10));
+            map.put("times",times);
+            data.add(map);
+        }
+        LayModel model = new LayModel();
+        model.setCode(0);
+        model.setMsg("");
+        model.setCount(stations.length);
+        model.setData(data);
+        return model;
     }
 }

@@ -1,7 +1,6 @@
 package com.iscas.data.service.impl;
 
 import com.iscas.data.dao.NodeInfoDao;
-import com.iscas.data.model.Message;
 import com.iscas.data.service.JCInfoService;
 import com.iscas.data.tool.FileClient;
 import com.iscas.data.tool.RedisClient;

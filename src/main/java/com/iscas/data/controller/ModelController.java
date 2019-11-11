@@ -32,4 +32,5 @@ public class ModelController {
     public List<Map<String, String>> getCompare(@RequestParam String name){
         return modelService.getInfoByName(name);
     }
+
 }

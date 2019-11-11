@@ -161,4 +161,18 @@ public class NodeInfoServiceImpl implements NodeInfoService {
         }
         return info;
     }
+
+    @Override
+    public List<Map<String, String>> getRate() {
+        List<Map<String,String>> info = new ArrayList<>();
+        for (int i = 1; i <40 ; i++) {
+            Map<String,String> map = new HashMap<>();
+            String location = nodeInfoDao.getLocationById(String.valueOf(i));
+            map.put("lat",location.split(",")[0]);
+            map.put("lng",location.split(",")[1]);
+            map.put("count",String.valueOf((int) (Math.random() * (100 - 1) + 1)));
+            info.add(map);
+        }
+        return info;
+    }
 }
