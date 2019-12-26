@@ -24,4 +24,8 @@ public class VoiceController {
         String message = voiceService.operate(operationtype,parameter);
         return message;
     }
+    @RequestMapping(value = "getOrder.json")
+    public void getOrder(@RequestParam String node_id,@RequestParam String operation){
+        voiceService.getOrder(node_id,operation);
+    }
 }

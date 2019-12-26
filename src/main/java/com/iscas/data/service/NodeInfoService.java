@@ -1,5 +1,7 @@
 package com.iscas.data.service;
 
+import com.sun.jmx.snmp.mpm.SnmpMsgTranslator;
+
 import java.util.List;
 import java.util.Map;
 
@@ -96,4 +98,56 @@ public interface NodeInfoService {
      * @date: 2019/11/11 16:28
      */
     public List<Map<String,String>> getRate();
+    /**
+     *
+     * 功能描述: 获取直流线路
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/12/2 15:49
+     */
+    public List<Map<String,String>> getdcline();
+    /**
+     *
+     * 功能描述: 获取区域的边界
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/12/3 14:26
+     */
+    public List<Map<String,List>> getAreaBorder(String area);
+    /**
+     *
+     * 功能描述: 获取省的边界
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/12/26 10:37
+     */
+    public List<List> getCityBorder(String cityName);
+    public void updateType();
+    public List<List<Map<String,String>>> getBorderLine();
+    /**
+     *
+     * 功能描述: center location
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/12/6 15:13
+     */
+    public List<Map<String,String>> getCenterByArea(String area);
+    /**
+     *
+     * 功能描述: 市区数据
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/12/9 12:59
+     */
+    public List<Map> getCityByName(String name);
 }

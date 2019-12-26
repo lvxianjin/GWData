@@ -2,11 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iscas.data.dao.NodeInfoDao">
+    <update id="updateLvel">
+        UPDATE `line_info` SET `level`=#{level} WHERE (`id`=#{id})
+    </update>
+    <update id="updateType">
+        UPDATE `st_location` SET `type`=#{type} WHERE (`st_name`=#{st_name})
+    </update>
     <select id="getNodeInfo" resultType="java.util.Map" parameterType="java.lang.String">
         SELECT node,amplitude,level,type,location FROM node_voltage_transient,location_info WHERE time = #{time} AND node_id = node
     </select>
     <select id="getRouteInfo" resultType="java.util.Map" parameterType="java.lang.String">
-        SELECT `from`,`to`,head_active,end_active FROM line_info_transient WHERE time = #{time}
+        SELECT `from`,`to`,`level`,head_active,end_active FROM line_info_transient WHERE time = #{time}
     </select>
     <select id="getLocationById" parameterType="java.lang.String" resultType="java.lang.String">
         SELECT location FROM location_info WHERE node_id = #{node_id}
@@ -28,5 +34,32 @@
     </select>
     <select id="getIdByName" resultType="java.lang.String">
         SELECT node_id FROM location_info WHERE `name` = #{name}
+    </select>
+    <select id="getSt_name" resultType="java.util.Map">
+        SELECT lat,lng FROM st_location
+    </select>
+    <select id="getLine" resultType="java.util.Map">
+        SELECT `from`,`to` FROM line_info WHERE `level` = '500kv'
+    </select>
+    <select id="getLocationByName" resultType="java.util.Map">
+        SELECT lng,lat FROM st_location WHERE st_name = #{st_name}
+    </select>
+    <select id="getdcline" resultType="java.util.Map">
+        SELECT `from`,`to` FROM dc_line
+    </select>
+    <select id="getProvince" resultType="java.util.Map">
+        SELECT * FROM province
+    </select>
+    <select id="getProvinceByArea" resultType="java.util.Map">
+        SELECT province,center,id FROM province WHERE area = #{area}
+    </select>
+    <select id="getAreaByName" resultType="java.lang.String">
+        SELECT area FROM province WHERE province = #{name}
+    </select>
+    <select id="getCenterByArea" resultType="java.util.Map">
+        SELECT province,center,english FROM province WHERE area =#{area}
+    </select>
+    <select id="getCountyInfo" resultType="java.util.Map">
+        SELECT * FROM city WHERE city = #{city}
     </select>
 </mapper>

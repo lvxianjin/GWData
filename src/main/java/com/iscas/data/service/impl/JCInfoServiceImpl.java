@@ -118,7 +118,7 @@ public class JCInfoServiceImpl implements JCInfoService {
         List<Map<String,String>> data1 = new ArrayList<>();
         List<Map<String,String>> data2 = new ArrayList<>();
         FileClient client = new FileClient();
-        List<String> info = client.LoadFile(filePath);
+        List<String> info = client.getContent(filePath);
         String[] name = info.get(count).split(",");
         String[] value = info.get(count+1).split(",");
         map.put("address","华中地区");
@@ -184,7 +184,7 @@ public class JCInfoServiceImpl implements JCInfoService {
                 map.put("FDJ_name", "Ⅲ段母线");
                 map.put("Police", Nformat.format(police));
             } else if (i == 1) {
-                map.put("FDJ_name", "2#发电机");
+                map.put("FDJ_name", "2号发电机");
                 map.put("Police", Nformat.format(police));
             } else if (i == 2) {
                 map.put("FDJ_name", "Ⅴ段母线");
@@ -193,10 +193,10 @@ public class JCInfoServiceImpl implements JCInfoService {
                 map.put("FDJ_name", "Ⅵ段母线");
                 map.put("Police", Nformat.format(police));
             } else if (i == 4) {
-                map.put("FDJ_name", "1#发电机");
+                map.put("FDJ_name", "1号发电机");
                 map.put("Police", "-" + Nformat.format(police));
             } else {
-                map.put("FDJ_name", "3#发电机");
+                map.put("FDJ_name", "3号发电机");
                 map.put("Police", "-" + Nformat.format(police));
             }
             double before = ((int) (Math.random() * (30 - 10) + 10)) * 0.01;

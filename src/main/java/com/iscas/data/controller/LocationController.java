@@ -3,12 +3,12 @@ package com.iscas.data.controller;
 import com.iscas.data.dao.NodeInfoDao;
 import com.iscas.data.service.JCInfoService;
 import com.iscas.data.service.NodeInfoService;
-import com.sun.javafx.collections.MappingChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.*;
 
 /**
@@ -23,6 +23,8 @@ public class LocationController {
     private int count = 0;
     @Autowired
     private NodeInfoService nodeInfoService;
+    @Autowired
+    private NodeInfoDao dao;
     @Autowired
     private JCInfoService jcInfoService;
     @RequestMapping("getBorder.json")
@@ -65,5 +67,33 @@ public class LocationController {
     @RequestMapping(value = "getRate.json")
     public List<Map<String,String>> getRate(){
         return nodeInfoService.getRate();
+    }
+    @RequestMapping(value = "getdcline.json")
+    public List<Map<String,String>> getdcline(){
+        return nodeInfoService.getdcline();
+    }
+    @RequestMapping(value = "getTest")
+    public void test(){
+        nodeInfoService.updateType();
+    }
+    @RequestMapping(value = "getAreaBorder.json")
+    public List<Map<String,List>> getAreaBorder(@RequestParam String area){
+        return nodeInfoService.getAreaBorder(area);
+    }
+    @RequestMapping(value = "getBorderLine.json")
+    public List<List<Map<String,String>>> getBorderLine(){
+        return nodeInfoService.getBorderLine();
+    }
+    @RequestMapping(value = "getCenterByArea.json")
+    public List<Map<String,String>> getCenterByArea(@RequestParam String area){
+        return nodeInfoService.getCenterByArea(area);
+    }
+    @RequestMapping(value = "getCityBorder.json")
+    public List<List> getCityBorder(@RequestParam String cityName){
+        return nodeInfoService.getCityBorder(cityName);
+    }
+    @RequestMapping(value = "getCityByName.json")
+    public List<Map> getCityByName(@RequestParam String city){
+        return nodeInfoService.getCityByName(city);
     }
 }

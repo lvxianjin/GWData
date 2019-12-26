@@ -2,34 +2,47 @@ package com.iscas.data.tool;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : lvxianjin
- * @Date: 2019/10/25 13:55
+ * @Date: 2019/11/12 15:55
  * @Description:
  */
 public class FileClient {
-    public ArrayList<String> LoadFile(String path){
-        ArrayList<String> list = new ArrayList<>();
-        File file = new File(path);
-        file.setReadable(true);
-        file.setWritable(true);
-        BufferedReader reader = null;
+    public int writeResult(List<String> content, String filePath) {
+        int rest = 0;
+        File file = new File(filePath);
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"utf-8"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String line = "";
-        String everyline = "";
-        try {
-            while ((line = reader.readLine())!= null){
-                everyline = line;
-                list.add(everyline);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+            for (int i = 0; i < content.size(); i++) {
+                bw.write(content.get(i) + "\t\n");
             }
+            bw.close();
+            rest = 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return rest;
+    }
+    public List<String> getContent(String filePath) {
+        List<String> content = new ArrayList<String>();
+        BufferedReader br = null;
+        File file = new File(filePath);
+        try {
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "gbk"));
+            String str;
+            while ((str = br.readLine()) != null) {
+                content.add(str);
+            }
+            br.close();
+            ;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return list;
+        return content;
     }
 }

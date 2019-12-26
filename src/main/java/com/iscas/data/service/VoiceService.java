@@ -27,4 +27,14 @@ public interface VoiceService {
      * @date: 2019/10/28 8:39
      */
     String operate(String commandType,String parameter);
+    /**
+     *
+     * 功能描述: 获取沙盘操作
+     *
+     * @param:
+     * @return:
+     * @auther: lvxianjin
+     * @date: 2019/11/18 19:29
+     */
+    void getOrder(String node_id,String operation);
 }

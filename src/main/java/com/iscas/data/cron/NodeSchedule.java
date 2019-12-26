@@ -1,5 +1,4 @@
 package com.iscas.data.cron;
-
 import com.iscas.data.dao.NodeInfoDao;
 import com.iscas.data.service.NodeInfoService;
 import com.iscas.data.socket.NodeSocket;
@@ -13,7 +12,6 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -63,7 +61,7 @@ public class NodeSchedule implements SchedulingConfigurer {
                 client.setValue("time",String.valueOf(time));
                 List<Map<String,String>> data1 = nodeInfoService.getNodeInfo(String.valueOf(time));
                 List<Map<String,String>> cluster_info = nodeInfoDao.getCluster(cluster_id,String.valueOf(time));
-                if(!cluster_id.equals("40")){
+                if(cluster_info.size() !=0){
                     for (int i = 0; i <cluster_info.size() ; i++) {
                         Map<String,String> map = cluster_info.get(i);
                         map.put("lng",map.get("location").split(",")[0]);

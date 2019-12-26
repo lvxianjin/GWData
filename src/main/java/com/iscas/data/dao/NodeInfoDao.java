@@ -75,4 +75,15 @@ public interface NodeInfoDao {
     List<Map<String,String>> getCluster(String node,String time);
     Map<String,String> getBasicInfo(String node_id);
     String getIdByName(String name);
+    int updateLvel(int id,String level);
+    List<Map<String,String>> getSt_name();
+    List<Map<String,String>> getLine();
+    Map<String,String> getLocationByName(String st_name);
+    List<Map<String,String>> getdcline();
+    List<Map<String,String>> getProvince();
+    List<Map<String,String>> getProvinceByArea(String area);
+    int updateType(String st_name,String type);
+    String getAreaByName(String name);
+    List<Map<String,String>> getCenterByArea(String area);
+    List<Map<String,String>> getCountyInfo(String city);
 }
